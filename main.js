@@ -1,25 +1,30 @@
-var msgBtn = document.querySelector('.show-message-button');
-var message = document.querySelector('.message-view');
-var icon = document.querySelector('.icon-view');
-var affirmation = document.getElementById('affirmation-radio');
-var mantra = document.getElementById('mantra-radio');
-var notificationBox = document.getElementById('notification-box');
-var choiceBox = document.getElementById('choice-box');
-var notification = document.querySelector('.notification');
-var question = document.querySelector('.question');
-var acknowledgeBtn = document.querySelector('.acknowledge-notification');
-var loginBtn = document.querySelector('.login-button');
 var homeView = document.querySelector('.home-view');
 var loginView = document.querySelector('.login-view');
 var userName = document.getElementById('user');
 var welcomeName = document.querySelector('.user-name');
 var promptUser = document.querySelector('.prompt');
+var message = document.querySelector('.message-view');
+var icon = document.querySelector('.icon-view');
+var notificationBox = document.getElementById('notification-box');
+var choiceBox = document.getElementById('choice-box');
+var notification = document.querySelector('.notification');
+var question = document.querySelector('.question');
+var affirmationBtn = document.getElementById('affirmation-radio');
+var mantraBtn = document.getElementById('mantra-radio');
+var msgBtn = document.querySelector('.show-message-button');
+var acknowledgeBtn = document.querySelector('.acknowledge-notification');
+var loginBtn = document.querySelector('.login-button');
+
 
 msgBtn.addEventListener('click', displayMsg);
 acknowledgeBtn.addEventListener('click', changeView);
 loginBtn.addEventListener('click', switchToHome);
 
 var user;
+var displayedMsgs = {
+  mantras: [],
+  affirmations: []
+}
 
 function createUser() {
   user = {
@@ -55,10 +60,6 @@ function getAllIndexs() {
   }
 }
 
-var displayedMsgs = {
-  mantras: [],
-  affirmations: []
-}
 
 function changeView() {
   question.classList.toggle('hidden');
@@ -93,7 +94,7 @@ function displayMsg() {
 
 function chooseMsg() {
   var idx = getAllIndexs();
-  if (affirmation.checked) {
+  if (affirmationBtn.checked) {
     if (affirmations.length) {
       message.innerText = affirmations[idx.affirmations];
       organizeMsgs('affirmations', affirmations, idx.affirmations)
@@ -102,7 +103,7 @@ function chooseMsg() {
       alertUser('affirmations')
       organizeMsgs('affirmations', affirmations)
     }
-  } else if (mantra.checked) {
+  } else if (mantraBtn.checked) {
     if (mantras.length) {
       message.innerText = mantras[idx.mantras];
       organizeMsgs('mantras', mantras, idx.mantras);
