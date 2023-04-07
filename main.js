@@ -8,9 +8,41 @@ var choiceBox = document.getElementById('choice-box');
 var notification = document.querySelector('.notification');
 var question = document.querySelector('.question');
 var acknowledgeBtn = document.querySelector('.acknowledge-notification');
+var loginBtn = document.querySelector('.login-button');
+var homeView = document.querySelector('.home-view');
+var loginView = document.querySelector('.login-view');
+var userName = document.getElementById('user');
+var welcomeName = document.querySelector('.user-name');
+var promptUser = document.querySelector('.prompt');
 
 msgBtn.addEventListener('click', displayMsg);
 acknowledgeBtn.addEventListener('click', changeView);
+loginBtn.addEventListener('click', switchToHome);
+
+var user;
+
+function createUser() {
+  user = {
+    name: userName.value
+  }
+  return user;
+}
+
+function updateWelcomeMsg() {
+ var user = createUser();
+ welcomeName.innerText = user.name;
+}
+
+function switchToHome(event) {
+  event.preventDefault();
+  if (!userName.value) {
+    promptUser.classList.remove('hidden');
+  } else{
+    updateWelcomeMsg();
+    homeView.classList.remove('hidden');
+    loginView.classList.add('hidden');
+  }
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
