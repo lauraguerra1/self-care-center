@@ -12,11 +12,12 @@ var loginBtn = document.querySelector('.login-button');
 var homeView = document.querySelector('.home-view');
 var loginView = document.querySelector('.login-view');
 var userName = document.getElementById('user');
-var welcomeName = document.querySelector('.user-name')
+var welcomeName = document.querySelector('.user-name');
+var promptUser = document.querySelector('.prompt');
 
 msgBtn.addEventListener('click', displayMsg);
 acknowledgeBtn.addEventListener('click', changeView);
-loginBtn.addEventListener('click', switchToHome)
+loginBtn.addEventListener('click', switchToHome);
 
 var user;
 
@@ -34,9 +35,13 @@ function updateWelcomeMsg() {
 
 function switchToHome(event) {
   event.preventDefault();
-  updateWelcomeMsg();
-  homeView.classList.remove('hidden');
-  loginView.classList.add('hidden');
+  if (!userName.value) {
+    promptUser.classList.remove('hidden');
+  } else{
+    updateWelcomeMsg();
+    homeView.classList.remove('hidden');
+    loginView.classList.add('hidden');
+  }
 }
 
 function getRandomIndex(array) {
