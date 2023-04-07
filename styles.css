@@ -40,7 +40,7 @@ body {
     color: white;
     border-radius: 5px;
     text-align: center;
-    display: flex;
+    /* display: flex; */
     font-family: 'Quicksand', sans-serif;
     font-size: 16px;
     margin: 1rem auto;
