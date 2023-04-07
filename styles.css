@@ -39,6 +39,7 @@ body {
     background-color: #134d71;
     color: white;
     border-radius: 5px;
+    border: none;
     text-align: center;
     display: flex;
     font-family: 'Quicksand', sans-serif;
