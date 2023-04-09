@@ -14,11 +14,14 @@ var mantraBtn = document.getElementById('mantra-radio');
 var msgBtn = document.querySelector('.show-message-button');
 var acknowledgeBtn = document.querySelector('.acknowledge-notification');
 var loginBtn = document.querySelector('.login-button');
+var fullPage = document.querySelector('main');
+var allBtns = [msgBtn, acknowledgeBtn, loginBtn];
 
 
 msgBtn.addEventListener('click', displayMsg);
 acknowledgeBtn.addEventListener('click', changeView);
 loginBtn.addEventListener('click', switchToHome);
+fullPage.addEventListener('mouseover', switchBtnColor)
 
 var user;
 var displayedMsgs = {
@@ -36,6 +39,15 @@ function createUser() {
 function updateWelcomeMsg() {
  var user = createUser();
  welcomeName.innerText = user.name;
+}
+
+function switchBtnColor(event) {
+  var selectedBtn = event.target;
+  if (selectedBtn.classList.contains('button')) {
+    selectedBtn.classList.add('colored-button');
+  } else {
+    allBtns.forEach((btn) => btn.classList.remove('colored-button'));
+  }
 }
 
 function switchToHome(event) {
